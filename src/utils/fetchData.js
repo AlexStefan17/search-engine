@@ -1,4 +1,4 @@
-const API_URL = "https://localhost:8983/solr/jobs/";
+const API_URL = "https://localhost:8983/solr/jobs/select";
 
 // Fetch the jobs using the string created by user inputs/checkbox.
 export const getData = async (createQueryString) => {
