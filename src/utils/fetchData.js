@@ -3,7 +3,7 @@ const API_URL = "http://localhost:8983/solr/jobs/select";
 // Fetch the jobs using the string created by user inputs/checkbox.
 export const getData = async (createQueryString) => {
   try {
-    const response = await fetch(`${API_URL}?${createQueryString}`);
+    const response = await fetch(`${API_URL}?${createQueryString}&wt=json`);
     const data = await response.json();
     return {
       jobs: data.response.docs,
