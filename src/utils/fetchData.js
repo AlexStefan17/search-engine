@@ -13,7 +13,7 @@ export const getData = async (createQueryString) => {
     console.error("Error fetching data:", error);
     throw error; // Re-throw the error to propagate it to the caller
   }
-}; http://localhost:8983/solr/jobs/select
+};
 // get the number of jobs in Romania.
 export const getNumberOfJobs = async () => {
   try {
