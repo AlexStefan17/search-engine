@@ -1,4 +1,4 @@
-const API_URL = "https://api.peviitor.ro/v3/search/";
+const API_URL = "https://localhost:8080/api/v0/search/";
 
 // Fetch the jobs using the string created by user inputs/checkbox.
 export const getData = async (createQueryString) => {
