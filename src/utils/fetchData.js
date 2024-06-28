@@ -1,4 +1,4 @@
-const API_URL = "http:localhost:8080/api/v3/search/";
+const API_URL = "http://localhost:8080/api/v3/search/";
 
 // Fetch the jobs using the string created by user inputs/checkbox.
 export const getData = async (createQueryString) => {
