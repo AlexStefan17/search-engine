@@ -28,7 +28,7 @@ export const getNumberOfJobs = async () => {
 // get the number of Company we have in our DB
 export const getNumberOfCompany = async () => {
   try {
-    const response = await fetch(`https://api.peviitor.ro/v3/logo/`);
+    const response = await fetch(`http://localhost:8080/api/v3/logo/`);
     const data = await response.json();
     return data.companies.length;
   } catch (error) {
@@ -41,7 +41,7 @@ export const getNumberOfCompany = async () => {
 // fetch pentru a lua numele de la firme pentru checkbox.
 export const getNameOfCompanies = async () => {
   try {
-    const response = await fetch(`https://api.peviitor.ro/v3/companies/`);
+    const response = await fetch(`http://localhost:8080/api/v3/companies/`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -53,7 +53,7 @@ export const getNameOfCompanies = async () => {
 // fetch pentru a lua logo-urile pentru firme
 export const getLogoOfCompanies = async () => {
   try {
-    const response = await fetch(`https://api.peviitor.ro/v1/logo/`);
+    const response = await fetch(`http://localhost:8080/api/v1/logo/`);
     const data = await response.json();
 
     return data.companies;
