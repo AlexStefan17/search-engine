@@ -40,7 +40,7 @@ const Landing = () => {
               </h1>
               <h4>
                 Peste <span>{totalJobs}</span> de locuri de muncă din România
-                actualizate zilnic
+                actualizate zilnic DADADADADADA
               </h4>
             </div>
           </div>
