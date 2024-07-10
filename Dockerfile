@@ -15,4 +15,4 @@ RUN npm install
 ARG BUILD_ENV=local
 
 # Build the React app for the specified environment
-RUN npm run build:${BUILD_ENV}
+# RUN npm run build:${BUILD_ENV}
