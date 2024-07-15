@@ -17,7 +17,7 @@ export const getData = async (createQueryString) => {
 // get the number of jobs in Romania.
 export const getNumberOfJobs = async () => {
   try {
-    const response = await fetch(`http://localhost:8080/api/v0/jobs/`);
+    const response = await fetch(`http://localhost:8080/api/v0/total/`);
     const data = await response.json();
     return data.response.numFound;
   } catch (error) {
