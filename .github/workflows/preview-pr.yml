@@ -6,44 +6,36 @@ on:
       - opened
       - reopened
       - synchronize
+      - closed
 
 permissions:
   contents: write
-
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the PR branch
       - name: Checkout PR Branch
         uses: actions/checkout@v3
 
-      # Set up Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "npm"
-
-      # Install dependencies
       - name: Install Dependencies
         run: npm ci
 
-      # Build the frontend
       - name: Build Frontend
         run: npm run build:production
 
-      # Deploy the preview
       - name: Deploy Preview
+        if: github.event.action != 'closed'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           destination_dir: pr-previews/${{ github.event.number }}
 
-      # Output the preview link
-      - name: Post Preview Link
-        run: echo "Preview Link: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-previews/${{ github.event.number }}/"
+      - name: Cleanup Preview for Closed PR
+        if: github.event.action == 'closed'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./empty-dir
+          destination_dir: pr-previews/${{ github.event.number }}
