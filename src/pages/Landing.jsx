@@ -64,13 +64,13 @@ const Landing = () => {
         <div className="order-1">
           <div className="relative w-[300px] md:w-[486px] lg:w-[340px] xl:w-[486px]">
             <h1 className="text-text_orange text-[40px] md:text-[44px] xl:text-6xl font-semibold  mb-2 leading-[110%]">
-              Locul de muncă visat,
+              Locul de muncă visat CANACACANCANCANCA,
               <img
                 src={dungi}
                 alt="dungi"
                 className="absolute top-[128px] left-[-30px] scale-[0.7] md:scale-[0.9] md:top-[90px] md:left-[-30px] lg:top-[140px] lg:left-[-50px] lg:scale-[0.7] xl:top-[115px] xl:left-[180px] xl:scale-110"
               />{" "}
-              la un clic distanță
+              la un clic distanță CANACACANCANCANCA
             </h1>
             <h4 className="text-lg leading-6 text-text_grey">
               Peste{" "}
