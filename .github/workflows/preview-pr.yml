@@ -1,6 +1,6 @@
-# .github/workflows/preview.yml
-name: Deploy PR previews
-concurrency: preview-${{ github.ref }}
+name: Deploy PR Previews
+
+concurrency: preview-${{ github.ref_name }}
 on:
   pull_request:
     types:
@@ -8,17 +8,35 @@ on:
       - reopened
       - synchronize
       - closed
+
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: npm ci
-      - run: npm npm run build:production
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Project
         if: github.event.action != 'closed'
-      - uses: rossjrw/pr-preview-action@v1
+        run: npm run build:production
+
+      - name: Deploy Preview
+        if: github.event.action != 'closed'
+        uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: .
+          source-dir: ./build
           preview-branch: gh-pages
           umbrella-dir: pr-preview
           action: auto
+
+      - name: Cleanup Preview for Closed PR
+        if: github.event.action == 'closed'
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: delete
+
