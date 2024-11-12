@@ -32,6 +32,11 @@ jobs:
           umbrella-dir: pr-preview
           action: auto
 
+      - name: Print Preview URL
+        if: github.event.action != 'closed'
+        run: |
+          echo "Preview available at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-preview/${{ github.event.pull_request.number }}/" >> $GITHUB_STEP_SUMMARY
+
       - name: Cleanup Preview for Closed PR
         if: github.event.action == 'closed'
         uses: rossjrw/pr-preview-action@v1
@@ -39,4 +44,3 @@ jobs:
           preview-branch: gh-pages
           umbrella-dir: pr-preview
           action: delete
-
