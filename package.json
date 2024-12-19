@@ -26,6 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:local": "env-cmd -f ./env/.env.local react-scripts start",
+    "start:qa1": "env-cmd -f ./env/.env.qa1 react-scripts start",
     "start:qa": "env-cmd -f ./env/.env.qa react-scripts start",
     "start:production": "env-cmd -f ./env/.env.production react-scripts start",
     "start:final": "env-cmd -f ./env/.env.final react-scripts start",
