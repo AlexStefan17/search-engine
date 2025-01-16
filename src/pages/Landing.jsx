@@ -81,7 +81,7 @@ const Landing = () => {
                   data?.total.jobs
                 )}
               </strong>{" "}
-              de locuri de muncă din România actualizate zilnic DADADA
+              de locuri de muncă din România actualizate zilnic DADADADA
             </h4>
           </div>
         </div>
