@@ -70,7 +70,7 @@ const Landing = () => {
                 alt="dungi"
                 className="absolute top-[125px] left-[-3px] scale-[0.7] md:scale-[0.9] md:top-[90px] md:left-[-5px] lg:top-[138px] lg:left-[-30px] lg:scale-[0.7] xl:top-[113px] xl:left-[220px] xl:scale-110"
               />{" "}
-              la un click distanță
+              la un click distanță DA
             </h1>
             <h4 className="text-lg leading-6 text-text_grey">
               Peste{" "}
