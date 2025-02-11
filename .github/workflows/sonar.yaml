@@ -34,8 +34,8 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       with:
         args: >
-          -Dsonar.projectKey=YOUR_PROJECT_KEY
-          -Dsonar.projectName="YOUR_PROJECT_NAME"
+          -Dsonar.projectKey=search-engine
+          -Dsonar.projectName=search-engine
           -Dsonar.sources=src
           -Dsonar.sourceEncoding=UTF-8
           -Dsonar.exclusions=**/node_modules/**,**/dist/**
