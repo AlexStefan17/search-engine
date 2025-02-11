@@ -1,10 +1,10 @@
 name: SonarQube Scan
 
 on:
-  # push:
-  #   branches: [ main, master ]
-  # pull_request:
-  #   types: [opened, synchronize, reopened]
+  push:
+    branches: [ main, master ]
+  pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
@@ -12,23 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # Required for proper analysis
+        fetch-depth: 0
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Build project
-      run: npm run build  # Only if you have a build step
+      run: npm run build
 
     - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@master
+      uses: SonarSource/sonarqube-scan-action@v2
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -39,3 +40,4 @@ jobs:
           -Dsonar.sources=src
           -Dsonar.sourceEncoding=UTF-8
           -Dsonar.exclusions=**/node_modules/**,**/dist/**
+          -Dsonar.scanner.cache.enabled=true
