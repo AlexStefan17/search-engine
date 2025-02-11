@@ -1,0 +1,41 @@
+name: SonarQube Scan
+
+on:
+  # push:
+  #   branches: [ main, master ]
+  # pull_request:
+  #   types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Required for proper analysis
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build  # Only if you have a build step
+
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      with:
+        args: >
+          -Dsonar.projectKey=YOUR_PROJECT_KEY
+          -Dsonar.projectName="YOUR_PROJECT_NAME"
+          -Dsonar.sources=src
+          -Dsonar.sourceEncoding=UTF-8
+          -Dsonar.exclusions=**/node_modules/**,**/dist/**
